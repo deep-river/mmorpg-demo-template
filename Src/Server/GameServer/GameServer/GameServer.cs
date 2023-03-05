@@ -14,6 +14,7 @@ using GameServer.Services;
 
 namespace GameServer
 {
+    // 服务器主入 口
     class GameServer
     {
         Thread thread;
@@ -24,11 +25,8 @@ namespace GameServer
         {
             network = new NetService();
             network.Init(8000);
-
-            HelloWorldService.Instance.Init();
-            //DBService.Instance.Init();
-            //var a = DBService.Instance.Entities.Characters.Where(s => s.TID == 1);
-            //Console.WriteLine("{0}",a.FirstOrDefault<TCharacter>().Name);
+            DBService.Instance.Init();
+            UserService.Instance.Init();
             thread = new Thread(new ThreadStart(this.Update));
 
             return true;
@@ -37,9 +35,6 @@ namespace GameServer
         public void Start()
         {
             network.Start();
-
-            HelloWorldService.Instance.Start();
-
             running = true;
             thread.Start();
         }
