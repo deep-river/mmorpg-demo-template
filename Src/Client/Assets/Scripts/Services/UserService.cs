@@ -13,6 +13,7 @@ namespace Services
     class UserService : Singleton<UserService>, IDisposable
     {
         public UnityEngine.Events.UnityAction<Result, string> OnRegister; // 定义Unity事件OnRegister
+        public UnityEngine.Events.UnityAction<Result, string> OnLogin; // 定义Unity事件OnLogin
         NetMessage pendingMessage = null;
         bool connected = false;
 
@@ -22,11 +23,12 @@ namespace Services
             NetClient.Instance.OnConnect += OnGameServerConnect;
             NetClient.Instance.OnDisconnect += OnGameServerDisconnect;
             MessageDistributer.Instance.Subscribe<UserRegisterResponse>(this.OnUserRegister);
-            
+            MessageDistributer.Instance.Subscribe<UserLoginResponse>(this.OnUserLogin);
         }
 
         public void Dispose()
         {
+            MessageDistributer.Instance.Unsubscribe<UserLoginResponse>(this.OnUserLogin);
             MessageDistributer.Instance.Unsubscribe<UserRegisterResponse>(this.OnUserRegister);
             NetClient.Instance.OnConnect -= OnGameServerConnect;
             NetClient.Instance.OnDisconnect -= OnGameServerDisconnect;
@@ -91,7 +93,7 @@ namespace Services
 
         public void SendRegister(string user, string psw)
         {
-            Debug.LogFormat("UserRegisterRequest::user :{0} psw:{1}", user, psw);
+            Debug.LogFormat("UserRegisterRequest::user:{0} psw:{1}", user, psw);
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
             message.Request.userRegister = new UserRegisterRequest();
@@ -118,6 +120,38 @@ namespace Services
             if (this.OnRegister != null)
             {
                 this.OnRegister(response.Result, response.Errormsg); // 此处逻辑层通过事件将注册结果通知UI层，避免直接引用游戏对象
+            }
+        }
+
+        public void SendLogin(string user, string psw)
+        {
+            Debug.LogFormat("UserLoginRequest::user:{0} psw:{1}", user, psw);
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.userLogin = new UserLoginRequest();
+            message.Request.userLogin.User = user;
+            message.Request.userLogin.Passward = psw;
+
+            if (this.connected && NetClient.Instance.Connected)
+            // 判断是否已连接
+            {
+                this.pendingMessage = null;
+                NetClient.Instance.SendMessage(message); // 重新连接到服务器
+            }
+            else
+            {
+                this.pendingMessage = message; // pendingMessage作为消息队列，实现断线重连
+                this.ConnectToServer();
+            }
+        }
+
+        void OnUserLogin(object sender, UserLoginResponse response)
+        {
+            Debug.LogFormat("OnUserLogin:{0} [{1}]", response.Result, response.Errormsg);
+
+            if (this.OnLogin != null)
+            {
+                this.OnLogin(response.Result, response.Errormsg); 
             }
         }
     }

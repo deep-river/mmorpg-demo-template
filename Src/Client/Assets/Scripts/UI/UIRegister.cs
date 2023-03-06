@@ -22,6 +22,7 @@ public class UIRegister : MonoBehaviour {
     {
         MessageBox.Show(string.Format("结果：{0} msg:{1}",result,msg));
     }
+
 	// Update is called once per frame
 	void Update () {
 		

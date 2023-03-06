@@ -16,6 +16,7 @@ namespace GameServer.Services
         public UserService()
         {
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserRegisterRequest>(this.OnRegister); // 订阅UserRegisterRequest事件，交由OnRegister方法处理
+            MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserLoginRequest>(this.OnLogin); // 订阅UserRegisterRequest事件，交由OnRegister方法处理
         }
 
         public void Init()
@@ -44,6 +45,38 @@ namespace GameServer.Services
                 DBService.Instance.Entities.SaveChanges();
                 message.Response.userRegister.Result = Result.Success;
                 message.Response.userRegister.Errormsg = "None";
+            }
+
+            byte[] data = PackageHandler.PackMessage(message);
+            sender.SendData(data, 0, data.Length);
+        }
+
+        void OnLogin(NetConnection<NetSession> sender, UserLoginRequest request)
+        {
+            Log.InfoFormat("UserLoginRequest: User:{0}  Pass:{1}", request.User, request.Passward);
+
+            NetMessage message = new NetMessage();
+            message.Response = new NetMessageResponse();
+            message.Response.userLogin = new UserLoginResponse();
+
+            TUser user = DBService.Instance.Entities.Users.Where(u => u.Username == request.User).FirstOrDefault();
+            if (user == null)
+            {
+                message.Response.userLogin.Result = Result.Failed;
+                message.Response.userLogin.Errormsg = "用户不存在.";
+            }
+            else
+            {
+                if (user.Password == request.Passward)
+                {
+                    message.Response.userLogin.Result = Result.Success;
+                    message.Response.userLogin.Errormsg = "登录成功。";
+                }
+                else
+                {
+                    message.Response.userLogin.Result = Result.Failed;
+                    message.Response.userLogin.Errormsg = "密码不正确.";
+                }
             }
 
             byte[] data = PackageHandler.PackMessage(message);
