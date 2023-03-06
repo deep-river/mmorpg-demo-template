@@ -9,6 +9,7 @@ public class UILogin : MonoBehaviour {
 	public InputField username;
 	public InputField password;
 	public Button buttonLogin;
+    public Button buttonRegister;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,14 @@ public class UILogin : MonoBehaviour {
 
     void OnLogin(SkillBridge.Message.Result result, string msg)
     {
-        MessageBox.Show(string.Format("结果：{0} msg:{1}", result, msg));
+        if (result == SkillBridge.Message.Result.Success)
+        {
+            // 登录成功，进入角色选择
+            MessageBox.Show(string.Format("登录成功，准备角色选择" + msg, "提示", MessageBoxType.Information));
+            SceneManager.Instance.LoadScene("CharSelect");
+        }
+        else
+            MessageBox.Show(string.Format(msg, "错误", MessageBoxType.Error));
     }
 	
 	// Update is called once per frame

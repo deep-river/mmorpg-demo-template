@@ -7,3 +7,11 @@
 
 2023-03-06 15:57:52,367 [ 1] INFO  Unity: LoadingMesager::OnGameServerConnect :0 reason:Success
 2023-03-06 15:57:54,826 [ 1] INFO  Unity: OnUserLogin:Failed [密码不正确.]
+2023-03-06 15:58:09,684 [ 1] INFO  Unity: UserLoginRequest::user:brad123 psw:brad123
+2023-03-06 15:58:09,702 [ 1] INFO  Unity: OnUserLogin:Success [登录成功。]
+2023-03-06 15:58:13,382 [ 1] INFO  Unity: OnDestroy NetworkManager.
+2023-03-06 15:58:13,383 [ 1] WARN  Unity: CloseConnection(), errorCode: 1007
+UnityEngine.Debug:LogWarning(Object)
+Network.NetClient:CloseConnection(Int32) (at Assets/Scripts/Network/NetClient.cs:180)
+Network.NetClient:OnDestroy() (at Assets/Scripts/Network/NetClient.cs:175)
+

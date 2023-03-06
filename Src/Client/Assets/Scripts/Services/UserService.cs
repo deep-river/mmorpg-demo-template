@@ -22,6 +22,7 @@ namespace Services
             // 注册监听事件
             NetClient.Instance.OnConnect += OnGameServerConnect;
             NetClient.Instance.OnDisconnect += OnGameServerDisconnect;
+            // 客户端注册监听Response事件，服务端监听Request事件
             MessageDistributer.Instance.Subscribe<UserRegisterResponse>(this.OnUserRegister);
             MessageDistributer.Instance.Subscribe<UserLoginResponse>(this.OnUserLogin);
         }
@@ -149,6 +150,10 @@ namespace Services
         {
             Debug.LogFormat("OnUserLogin:{0} [{1}]", response.Result, response.Errormsg);
 
+            if (response.Result == Result.Success)
+            {
+                Models.User.Instance.SetupUserInfo(response.Userinfo);
+            }
             if (this.OnLogin != null)
             {
                 this.OnLogin(response.Result, response.Errormsg); 
