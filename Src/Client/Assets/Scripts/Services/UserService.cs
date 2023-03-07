@@ -12,25 +12,30 @@ namespace Services
 {
     class UserService : Singleton<UserService>, IDisposable
     {
-        public UnityEngine.Events.UnityAction<Result, string> OnRegister; // 定义Unity事件OnRegister
-        public UnityEngine.Events.UnityAction<Result, string> OnLogin; // 定义Unity事件OnLogin
+
+        public UnityEngine.Events.UnityAction<Result, string> OnLogin;
+        public UnityEngine.Events.UnityAction<Result, string> OnRegister;
+        public UnityEngine.Events.UnityAction<Result, string> OnCharacterCreate;
+
         NetMessage pendingMessage = null;
+
         bool connected = false;
 
         public UserService()
         {
-            // 注册监听事件
             NetClient.Instance.OnConnect += OnGameServerConnect;
             NetClient.Instance.OnDisconnect += OnGameServerDisconnect;
-            // 客户端注册监听Response事件，服务端监听Request事件
-            MessageDistributer.Instance.Subscribe<UserRegisterResponse>(this.OnUserRegister);
             MessageDistributer.Instance.Subscribe<UserLoginResponse>(this.OnUserLogin);
+            MessageDistributer.Instance.Subscribe<UserRegisterResponse>(this.OnUserRegister);
+            MessageDistributer.Instance.Subscribe<UserCreateCharacterResponse>(this.OnUserCreateCharacter);
+            
         }
 
         public void Dispose()
         {
             MessageDistributer.Instance.Unsubscribe<UserLoginResponse>(this.OnUserLogin);
             MessageDistributer.Instance.Unsubscribe<UserRegisterResponse>(this.OnUserRegister);
+            MessageDistributer.Instance.Unsubscribe<UserCreateCharacterResponse>(this.OnUserCreateCharacter);
             NetClient.Instance.OnConnect -= OnGameServerConnect;
             NetClient.Instance.OnDisconnect -= OnGameServerDisconnect;
         }
@@ -94,14 +99,58 @@ namespace Services
                         this.OnRegister(Result.Failed, string.Format("服务器断开！\n RESULT:{0} ERROR:{1}", result, reason));
                     }
                 }
+                else
+                {
+                    if (this.OnCharacterCreate != null)
+                    {
+                        this.OnCharacterCreate(Result.Failed, string.Format("服务器断开！\n RESULT:{0} ERROR:{1}", result, reason));
+                    }
+                }
                 return true;
             }
             return false;
         }
 
+        public void SendLogin(string user, string psw)
+        {
+            Debug.LogFormat("UserLoginRequest::user :{0} psw:{1}", user, psw);
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.userLogin = new UserLoginRequest();
+            message.Request.userLogin.User = user;
+            message.Request.userLogin.Passward = psw;
+
+            if (this.connected && NetClient.Instance.Connected)
+            {
+                this.pendingMessage = null;
+                NetClient.Instance.SendMessage(message);
+            }
+            else
+            {
+                this.pendingMessage = message;
+                this.ConnectToServer();
+            }
+        }
+
+        void OnUserLogin(object sender, UserLoginResponse response)
+        {
+            Debug.LogFormat("OnLogin:{0} [{1}]", response.Result, response.Errormsg);
+
+            if (response.Result == Result.Success)
+            {//登陆成功逻辑
+                Models.User.Instance.SetupUserInfo(response.Userinfo);
+            };
+            if (this.OnLogin != null)
+            {
+                this.OnLogin(response.Result, response.Errormsg);
+
+            }
+        }
+
+
         public void SendRegister(string user, string psw)
         {
-            Debug.LogFormat("UserRegisterRequest::user:{0} psw:{1}", user, psw);
+            Debug.LogFormat("UserRegisterRequest::user :{0} psw:{1}", user, psw);
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
             message.Request.userRegister = new UserRegisterRequest();
@@ -109,14 +158,13 @@ namespace Services
             message.Request.userRegister.Passward = psw;
 
             if (this.connected && NetClient.Instance.Connected)
-            // 判断是否已连接
             {
                 this.pendingMessage = null;
-                NetClient.Instance.SendMessage(message); // 重新连接到服务器
+                NetClient.Instance.SendMessage(message);
             }
             else
             {
-                this.pendingMessage = message; // pendingMessage作为消息队列，实现断线重连
+                this.pendingMessage = message;
                 this.ConnectToServer();
             }
         }
@@ -127,44 +175,49 @@ namespace Services
 
             if (this.OnRegister != null)
             {
-                this.OnRegister(response.Result, response.Errormsg); // 此处逻辑层通过事件将注册结果通知UI层，避免直接引用游戏对象
+                this.OnRegister(response.Result, response.Errormsg);
+
             }
         }
 
-        public void SendLogin(string user, string psw)
+        public void SendCharacterCreate(string name, CharacterClass cls)
         {
-            Debug.LogFormat("UserLoginRequest::user:{0} psw:{1}", user, psw);
+            Debug.LogFormat("UserCreateCharacterRequest::name :{0} class:{1}", name, cls);
             NetMessage message = new NetMessage();
             message.Request = new NetMessageRequest();
-            message.Request.userLogin = new UserLoginRequest();
-            message.Request.userLogin.User = user;
-            message.Request.userLogin.Passward = psw;
+            message.Request.createChar = new UserCreateCharacterRequest();
+            message.Request.createChar.Name = name;
+            message.Request.createChar.Class = cls;
 
             if (this.connected && NetClient.Instance.Connected)
-            // 判断是否已连接
             {
                 this.pendingMessage = null;
-                NetClient.Instance.SendMessage(message); // 重新连接到服务器
+                NetClient.Instance.SendMessage(message);
             }
             else
             {
-                this.pendingMessage = message; // pendingMessage作为消息队列，实现断线重连
+                this.pendingMessage = message;
                 this.ConnectToServer();
             }
         }
 
-        void OnUserLogin(object sender, UserLoginResponse response)
+        void OnUserCreateCharacter(object sender, UserCreateCharacterResponse response)
         {
-            Debug.LogFormat("OnUserLogin:{0} [{1}]", response.Result, response.Errormsg);
+            Debug.LogFormat("OnUserCreateCharacter:{0} [{1}]", response.Result, response.Errormsg);
 
-            if (response.Result == Result.Success)
+            if(response.Result == Result.Success)
             {
-                Models.User.Instance.SetupUserInfo(response.Userinfo);
+                Models.User.Instance.Info.Player.Characters.Clear();
+                Models.User.Instance.Info.Player.Characters.AddRange(response.Characters);
             }
-            if (this.OnLogin != null)
+
+            if (this.OnCharacterCreate != null)
             {
-                this.OnLogin(response.Result, response.Errormsg); 
+                this.OnCharacterCreate(response.Result, response.Errormsg);
+
             }
         }
+
+
     }
 }

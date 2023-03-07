@@ -34,6 +34,7 @@ public class UICharacterSelect : MonoBehaviour {
     void Start()
     {
         InitCharacterSelect(true);
+        UserService.Instance.OnCharacterCreate = OnCharacterCreate;
     }
 
 
@@ -50,7 +51,22 @@ public class UICharacterSelect : MonoBehaviour {
             }
             uiChars.Clear();
 
+            for(int i=0;i<User.Instance.Info.Player.Characters.Count;i++)
+            {
 
+                GameObject go = Instantiate(uiCharInfo, this.uiCharList);
+                UICharInfo chrInfo = go.GetComponent<UICharInfo>();
+                chrInfo.info = User.Instance.Info.Player.Characters[i];
+
+                Button button = go.GetComponent<Button>();
+                int idx = i;
+                button.onClick.AddListener(() => {
+                    OnSelectCharacter(idx);
+                });
+
+                uiChars.Add(go);
+                go.SetActive(true);
+            }
         }
     }
 
@@ -58,6 +74,7 @@ public class UICharacterSelect : MonoBehaviour {
     {
         panelCreate.SetActive(true);
         panelSelect.SetActive(false);
+        OnSelectClass(1);
     }
 	
 	// Update is called once per frame
@@ -67,7 +84,12 @@ public class UICharacterSelect : MonoBehaviour {
 
     public void OnClickCreate()
     {
-        
+        if (string.IsNullOrEmpty(this.charName.text))
+        {
+            MessageBox.Show("请输入角色名称");
+            return;
+        }
+        UserService.Instance.SendCharacterCreate(this.charName.text, this.charClass);
     }
 
     public void OnSelectClass(int charClass)
@@ -105,6 +127,12 @@ public class UICharacterSelect : MonoBehaviour {
         Debug.LogFormat("Select Char:[{0}]{1}[{2}]", cha.Id, cha.Name, cha.Class);
         User.Instance.CurrentCharacter = cha;
         characterView.CurrectCharacter = idx;
+
+        for (int i = 0; i < User.Instance.Info.Player.Characters.Count; i++)
+        {
+            UICharInfo ci = this.uiChars[i].GetComponent<UICharInfo>();
+            ci.Selected = idx == i;
+        }
     }
     public void OnClickPlay()
     {
