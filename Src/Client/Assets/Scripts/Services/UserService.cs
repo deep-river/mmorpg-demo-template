@@ -218,6 +218,14 @@ namespace Services
             }
         }
 
-
+        public void SendGameEnter(int characterIdx)
+        {
+            Debug.LogFormat("UserGameEnterRequest:{0}", characterIdx);
+            NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
+            message.Request.gameEnter = new UserGameEnterRequest();
+            message.Request.gameEnter.characterIdx = characterIdx;
+            NetClient.Instance.SendMessage(message);
+        }
     }
 }
