@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
+using GameServer.Network;
 using System.Configuration;
 
 using System.Threading;
@@ -12,23 +13,22 @@ using System.Threading;
 using Network;
 using GameServer.Services;
 using GameServer.Managers;
-
 namespace GameServer
 {
     class GameServer
     {
+        NetService network;
         Thread thread;
         bool running = false;
-        NetService network;
-
         public bool Init()
         {
             int Port = Properties.Settings.Default.ServerPort;
             network = new NetService();
             network.Init(Port);
             DBService.Instance.Init();
+            DataManager.Instance.Load();
+            MapService.Instance.Init();
             UserService.Instance.Init();
-            MapManager.Instance.Init();
             thread = new Thread(new ThreadStart(this.Update));
 
             return true;

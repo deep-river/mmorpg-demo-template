@@ -19,7 +19,9 @@ namespace GameServer.Services
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserLoginRequest>(this.OnLogin);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserRegisterRequest>(this.OnRegister);
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserCreateCharacterRequest>(this.OnCreateCharacter);
+
             MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserGameEnterRequest>(this.OnGameEnter);
+            MessageDistributer<NetConnection<NetSession>>.Instance.Subscribe<UserGameLeaveRequest>(this.OnGameLeave);
         }
 
 
@@ -104,7 +106,7 @@ namespace GameServer.Services
         {
             Log.InfoFormat("UserCreateCharacterRequest: Name:{0}  Class:{1}", request.Name, request.Class);
 
-            TCharacter character = new TCharacter() // T开头的类代表Entity Framework使用的对象映射
+            TCharacter character = new TCharacter()
             {
                 Name = request.Name,
                 Class = (int)request.Class,
@@ -130,9 +132,10 @@ namespace GameServer.Services
             sender.SendData(data, 0, data.Length);
         }
 
-        private void OnGameEnter(NetConnection<NetSession> sender, UserGameEnterRequest request)
+        void OnGameEnter(NetConnection<NetSession> sender, UserGameEnterRequest request)
         {
             TCharacter dbchar = sender.Session.User.Player.Characters.ElementAt(request.characterIdx);
+            Log.InfoFormat("UserGameEnterRequest: characterID:{0}:{1} Map:{2}", dbchar.ID, dbchar.Name, dbchar.MapID);
             Character character = CharacterManager.Instance.AddCharacter(dbchar);
 
             NetMessage message = new NetMessage();
@@ -145,6 +148,11 @@ namespace GameServer.Services
             sender.SendData(data, 0, data.Length);
             sender.Session.Character = character;
             MapManager.Instance[dbchar.MapID].CharacterEnter(sender, character);
+        }
+
+        void OnGameLeave(NetConnection<NetSession> sender, UserGameLeaveRequest request)
+        {
+           
         }
     }
 }
