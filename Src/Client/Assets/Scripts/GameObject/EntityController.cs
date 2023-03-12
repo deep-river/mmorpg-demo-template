@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Entities;
 
-// 绑定于所有游戏对象上，用于管理游戏对象实例，包括初始化与销毁
+
 public class EntityController : MonoBehaviour
 {
 
@@ -54,9 +54,8 @@ public class EntityController : MonoBehaviour
         if (entity != null)
             Debug.LogFormat("{0} OnDestroy :ID:{1} POS:{2} DIR:{3} SPD:{4} ", this.name, entity.entityId, entity.position, entity.direction, entity.speed);
 
-        if (UIWorldElementManager.Instance != null)
+        if(UIWorldElementManager.Instance!=null)
         {
-            // 销毁角色姓名条
             UIWorldElementManager.Instance.RemoveCharacterNameBar(this.transform);
         }
     }

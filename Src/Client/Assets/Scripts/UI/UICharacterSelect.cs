@@ -37,39 +37,6 @@ public class UICharacterSelect : MonoBehaviour {
         UserService.Instance.OnCharacterCreate = OnCharacterCreate;
     }
 
-
-    public void InitCharacterSelect(bool init)
-    {
-        panelCreate.SetActive(false);
-        panelSelect.SetActive(true);
-
-        if (init)
-        {
-            foreach (var old in uiChars)
-            {
-                Destroy(old);
-            }
-            uiChars.Clear();
-
-            for(int i=0;i<User.Instance.Info.Player.Characters.Count;i++)
-            {
-
-                GameObject go = Instantiate(uiCharInfo, this.uiCharList);
-                UICharInfo chrInfo = go.GetComponent<UICharInfo>();
-                chrInfo.info = User.Instance.Info.Player.Characters[i];
-
-                Button button = go.GetComponent<Button>();
-                int idx = i;
-                button.onClick.AddListener(() => {
-                    OnSelectCharacter(idx);
-                });
-
-                uiChars.Add(go);
-                go.SetActive(true);
-            }
-        }
-    }
-
     public void InitCharacterCreate()
     {
         panelCreate.SetActive(true);
@@ -92,6 +59,10 @@ public class UICharacterSelect : MonoBehaviour {
         UserService.Instance.SendCharacterCreate(this.charName.text, this.charClass);
     }
 
+    /// <summary>
+    /// 选择职业
+    /// </summary>
+    /// <param name="charClass"></param>
     public void OnSelectClass(int charClass)
     {
         this.charClass = (CharacterClass)charClass;
@@ -120,13 +91,47 @@ public class UICharacterSelect : MonoBehaviour {
             MessageBox.Show(message, "错误", MessageBoxType.Error);
     }
 
+
+    public void InitCharacterSelect(bool init)
+    {
+        panelCreate.SetActive(false);
+        panelSelect.SetActive(true);
+
+        if (init)
+        {
+            foreach (var old in uiChars)
+            {
+                Destroy(old);
+            }
+            uiChars.Clear();
+
+            for (int i = 0; i < User.Instance.Info.Player.Characters.Count; i++)
+            {
+
+                GameObject go = Instantiate(uiCharInfo, this.uiCharList);
+                UICharInfo chrInfo = go.GetComponent<UICharInfo>();
+                chrInfo.info = User.Instance.Info.Player.Characters[i];
+
+                Button button = go.GetComponent<Button>();
+                int idx = i;
+                button.onClick.AddListener(() => {
+                    OnSelectCharacter(idx);
+                });
+
+                uiChars.Add(go);
+                go.SetActive(true);
+            }
+        }
+    }
+
+
     public void OnSelectCharacter(int idx)
     {
         this.selectCharacterIdx = idx;
         var cha = User.Instance.Info.Player.Characters[idx];
         Debug.LogFormat("Select Char:[{0}]{1}[{2}]", cha.Id, cha.Name, cha.Class);
         User.Instance.CurrentCharacter = cha;
-        characterView.CurrectCharacter = idx;
+        characterView.CurrectCharacter = ((int)cha.Class - 1);
 
         for (int i = 0; i < User.Instance.Info.Player.Characters.Count; i++)
         {
@@ -138,7 +143,6 @@ public class UICharacterSelect : MonoBehaviour {
     {
         if (selectCharacterIdx >= 0)
         {
-            // MessageBox.Show("进入游戏", "进入游戏", MessageBoxType.Confirm);
             UserService.Instance.SendGameEnter(selectCharacterIdx);
         }
     }
