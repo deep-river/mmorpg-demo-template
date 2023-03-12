@@ -44,6 +44,7 @@ public class GameObjectManager : MonoBehaviour
 
     private void CreateCharacterObject(Character character)
     {
+        // 创建角色对象
         if (!Characters.ContainsKey(character.Info.Id) || Characters[character.Info.Id] == null)
         {
             Object obj = Resloader.Load<Object>(character.Define.Resource);
@@ -81,6 +82,8 @@ public class GameObjectManager : MonoBehaviour
                     pc.enabled = false;
                 }
             }
+            // 初始化角色姓名条
+            UIWorldElementManager.Instance.AddCharacterNameBar(go.transform, character);
         }
     }
 }
