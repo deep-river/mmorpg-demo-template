@@ -5,6 +5,7 @@ using UnityEngine;
 using Common.Data;
 using SkillBridge.Message;
 using Models;
+using Managers;
 
 namespace Services
 {
@@ -36,7 +37,8 @@ namespace Services
             foreach (var cha in response.Characters)
             {
                 if (User.Instance.CurrentCharacter.Id == cha.Id)
-                {//当前角色切换地图
+                {
+                    //当前角色切换地图
                     User.Instance.CurrentCharacter = cha;
                 }
                 CharacterManager.Instance.AddCharacter(cha);
@@ -58,6 +60,7 @@ namespace Services
             if (DataManager.Instance.Maps.ContainsKey(mapId))
             {
                 MapDefine map = DataManager.Instance.Maps[mapId];
+                User.Instance.CurrentMapData = map;
                 SceneManager.Instance.LoadScene(map.Resource);
             }
             else
