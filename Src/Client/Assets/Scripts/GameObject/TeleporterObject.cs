@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Common.Data;
+using Services;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,4 +31,26 @@ public class TeleporterObject : MonoBehaviour {
 		UnityEditor.Handles.ArrowHandleCap(0, this.transform.position, this.transform.rotation, 1f, EventType.Repaint);
 	}
 #endif
+
+	void OnTriggerEnter(Collider other)
+	{
+		PlayerInputController playerController = other.GetComponent<PlayerInputController>();
+		if (playerController != null && playerController.isActiveAndEnabled)
+		{
+			TeleporterDefine td = DataManager.Instance.Teleporters[this.ID];
+			if (td == null)
+			{
+				Debug.LogErrorFormat("TeleporterObject: Character [{0}] entered Teleporter [{1}], but TeleporterDefine not existed", playerController.character.Info.Name, this.ID);
+				return;
+			}
+			Debug.LogFormat("TeleporterObject: Character [{0}] entered Teleporter [{1}:{2}]", playerController.character.Info.Name, td.ID, td.Name);
+			if (td.LinkTo > 0)
+			{
+				if (DataManager.Instance.Teleporters.ContainsKey(td.LinkTo))
+					MapService.Instance.SendMapTeleport(this.ID);
+				else
+					Debug.LogErrorFormat("Teleporter ID:{0} LinkID {1} error!", td.ID, td.LinkTo);
+			}
+		}
+	}
 }
