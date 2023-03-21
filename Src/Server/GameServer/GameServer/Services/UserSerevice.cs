@@ -178,5 +178,11 @@ namespace GameServer.Services
             byte[] data = PackageHandler.PackMessage(message);
             sender.SendData(data, 0, data.Length);
         }
+
+        public void CharacterLeave(Character character)
+        {
+            CharacterManager.Instance.RemoveCharacter(character.Id);
+            MapManager.Instance[character.Info.mapId].CharacterLeave(character);
+        }
     }
 }
