@@ -15,17 +15,19 @@ public class UIMinimap : MonoBehaviour {
     private Transform playerTransform;
 	// Use this for initialization
 	void Start () {
-        this.InitMap();
+        MinimapManager.Instance.minimap = this;
+        this.UpdateMap();
     }
 
-    void InitMap()
+    public void UpdateMap()
     {
         this.mapName.text = User.Instance.CurrentMapData.Name;
-        if (this.minimap.overrideSprite == null)
-            this.minimap.overrideSprite = MinimapManager.Instance.LoadCurrentMinimap();
+        this.minimap.overrideSprite = MinimapManager.Instance.LoadCurrentMinimap();
 
         this.minimap.SetNativeSize();
         this.minimap.transform.localPosition = Vector3.zero;
+        this.minimapBoundingBox = MinimapManager.Instance.MinimapBoundingBox;
+        this.playerTransform = null;
     }
 	
 	// Update is called once per frame
@@ -33,7 +35,7 @@ public class UIMinimap : MonoBehaviour {
         if (playerTransform == null)
             playerTransform = MinimapManager.Instance.PlayerTransform;
 
-        if (minimapBoundingBox == null || playerTransform== null) return;
+        if (minimapBoundingBox == null || playerTransform == null) return;
 
         float realWidth = minimapBoundingBox.bounds.size.x;
         float realHeight = minimapBoundingBox.bounds.size.z;
