@@ -157,6 +157,21 @@ namespace GameServer.Services
             message.Response.gameEnter.Result = Result.Success;
             message.Response.gameEnter.Errormsg = "None";
 
+            // 在进入游戏时发送初始角色信息
+            message.Response.gameEnter.Character = character.Info;
+
+            // 道具系统测试 begin
+            int itemId = 2;
+            bool hasItem = character.ItemManager.HasItem(itemId);
+            Log.InfoFormat("HasItem:[{0}]{1}", itemId, hasItem);
+            if (hasItem)
+                character.ItemManager.RemoveItem(itemId, 1);
+            else
+                character.ItemManager.AddItem(itemId, 5);
+            Models.Item item = character.ItemManager.GetItem(itemId);
+            Log.InfoFormat("Item: [{0}][{1}]", itemId, item);
+            // 道具系统测试 end
+
             byte[] data = PackageHandler.PackMessage(message);
             sender.SendData(data, 0, data.Length);
             sender.Session.Character = character;
