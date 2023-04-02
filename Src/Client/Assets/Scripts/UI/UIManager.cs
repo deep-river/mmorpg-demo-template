@@ -19,7 +19,7 @@ public class UIManager : Singleton<UIManager>
     {
         UIWindowPool.Add(typeof(UITest), new UIElement() { Resources = "UI/UITest", Cache = true });
         UIWindowPool.Add(typeof(UIBag), new UIElement() { Resources = "UI/UIBag", Cache = false });
-        UIWindowPool.Add(typeof(UIBag), new UIElement() { Resources = "UI/UIShop", Cache = false });
+        UIWindowPool.Add(typeof(UIShop), new UIElement() { Resources = "UI/UIShop", Cache = false });
     }
 
     ~UIManager()
