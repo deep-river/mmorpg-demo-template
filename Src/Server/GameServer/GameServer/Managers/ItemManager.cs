@@ -78,6 +78,7 @@ namespace GameServer.Managers
                 item = new Item(dbItem);
                 this.Items.Add(itemId, item);
             }
+            // this.Owner.StatusManager.AddItemChange(itemId, count, StatusAction.Add);
             Log.InfoFormat("[{0}] AddItem [{1}] add Count:{2}", this.Owner.Data.ID, item, count);
             // DBService.Instance.Save();
             return true;
@@ -93,6 +94,7 @@ namespace GameServer.Managers
                 return false;
 
             item.Remove(count);
+            // this.Owner.StatusManager.AddItemChange(itemId, count, StatusAction.Delete);
             Log.InfoFormat("[{0}] RemoveItem [{1}] remove Count:{2}", this.Owner.Data.ID, item, count);
             // DBService.Instance.Save();
             return true;

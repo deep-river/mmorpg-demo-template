@@ -117,6 +117,7 @@ namespace GameServer.Services
                 MapPosX = 5000,
                 MapPosY = 4000,
                 MapPosZ = 820,
+                Gold = 100000,
             };
 
             // 背包测试 begin
@@ -124,7 +125,21 @@ namespace GameServer.Services
             bag.Owner = character;
             bag.Items = new byte[0];
             bag.Unlocked = 20;
+            TCharacterItem it = new TCharacterItem();
             character.Bag = DBService.Instance.Entities.CharacterBags.Add(bag);
+
+            character.Items.Add(new TCharacterItem()
+            {
+                Owner = character,
+                ItemID = 1,
+                ItemCount = 20,
+            });
+            character.Items.Add(new TCharacterItem()
+            {
+                Owner = character,
+                ItemID = 2,
+                ItemCount = 20,
+            });
             // 背包测试 end
 
             character = DBService.Instance.Entities.Characters.Add(character);

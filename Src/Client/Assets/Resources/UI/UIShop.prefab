@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 223591873665720160}
   - component: {fileID: 114670047363858922}
   - component: {fileID: 114788035430961408}
-  - component: {fileID: 114505167438091894}
+  - component: {fileID: 114075732016008184}
   m_Layer: 5
   m_Name: UIShop
   m_TagString: Untagged
@@ -603,6 +603,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 9999999999
+--- !u!114 &114075732016008184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794431058206982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437b774e9e27fd94d992020f87ade4e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 114494473515014726}
+  money: {fileID: 114052669559713776}
+  shopItem: {fileID: 1181840318698070, guid: c2308cbbc1fd8f94ba3fb86025901d64, type: 2}
+  itemRoot: []
 --- !u!114 &114086924802181328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1065,22 +1080,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\u6742\u8D27\u5E97"
---- !u!114 &114505167438091894
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1794431058206982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 802c2a56e81fd9844acd28917a15389a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: {fileID: 114052669559713776}
-  pages:
-  - {fileID: 224290657544629734}
-  - {fileID: 224943178784248498}
-  bagItem: {fileID: 1585628121650204, guid: a8ae3e5c10bd6b74aadd597f8790158b, type: 2}
 --- !u!114 &114571711297743450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1632,15 +1631,15 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 10
+    m_Top: 5
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 270, y: 90}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
-  m_ConstraintCount: 5
+  m_ConstraintCount: 2
 --- !u!114 &114975718128092976
 MonoBehaviour:
   m_ObjectHideFlags: 1
