@@ -424,7 +424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1796223035380364
 GameObject:
   m_ObjectHideFlags: 1
@@ -617,7 +617,9 @@ MonoBehaviour:
   title: {fileID: 114494473515014726}
   money: {fileID: 114052669559713776}
   shopItem: {fileID: 1181840318698070, guid: c2308cbbc1fd8f94ba3fb86025901d64, type: 2}
-  itemRoot: []
+  itemRoot:
+  - {fileID: 224290657544629734}
+  - {fileID: 224943178784248498}
 --- !u!114 &114086924802181328
 MonoBehaviour:
   m_ObjectHideFlags: 1

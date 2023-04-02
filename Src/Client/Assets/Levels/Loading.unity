@@ -2396,6 +2396,11 @@ MonoBehaviour:
   passwordConfirm: {fileID: 1549924174}
   buttonRegister: {fileID: 1540120570}
   uiLogin: {fileID: 526364203}
+--- !u!224 &1076250215 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224943178784248498, guid: 68ae332167b707547b42df62e096ff22,
+    type: 2}
+  m_PrefabInternal: {fileID: 1729531290}
 --- !u!1 &1165042393
 GameObject:
   m_ObjectHideFlags: 0
@@ -3964,7 +3969,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1076250215}
     m_Modifications:
     - target: {fileID: 224071686945961022, guid: c2308cbbc1fd8f94ba3fb86025901d64,
         type: 2}
@@ -4004,17 +4009,17 @@ Prefab:
     - target: {fileID: 224071686945961022, guid: c2308cbbc1fd8f94ba3fb86025901d64,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224071686945961022, guid: c2308cbbc1fd8f94ba3fb86025901d64,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 551.5
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 224071686945961022, guid: c2308cbbc1fd8f94ba3fb86025901d64,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 557.5
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224071686945961022, guid: c2308cbbc1fd8f94ba3fb86025901d64,
         type: 2}
@@ -4055,10 +4060,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181840318698070, guid: c2308cbbc1fd8f94ba3fb86025901d64, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2308cbbc1fd8f94ba3fb86025901d64, type: 2}
