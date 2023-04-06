@@ -19,7 +19,7 @@ public class UICharacterSelect : MonoBehaviour {
 
     public List<GameObject> uiChars = new List<GameObject>();
 
-    public Image[] titles;
+    public Text[] titles;
 
     public Text descs;
 
