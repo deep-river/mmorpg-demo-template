@@ -15632,7 +15632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  height: 2
+  height: 2.2
 --- !u!1 &462407651
 GameObject:
   m_ObjectHideFlags: 0
