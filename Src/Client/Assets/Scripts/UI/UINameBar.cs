@@ -8,10 +8,7 @@ public class UINameBar : MonoBehaviour {
 
     public Text avaverName;
 
-
-
     public Character character;
-
 
     // Use this for initialization
     void Start () {
