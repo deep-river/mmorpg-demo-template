@@ -118,6 +118,7 @@ namespace GameServer.Services
                 MapPosY = 4000,
                 MapPosZ = 820,
                 Gold = 100000,
+                Equips = new byte[28]
             };
 
             // 背包测试 begin
@@ -183,24 +184,24 @@ namespace GameServer.Services
             message.Response.gameEnter.Character = character.Info;
 
             // 道具系统测试 begin
-            int itemId = 2;
-            bool hasItem = character.ItemManager.HasItem(itemId);
-            Log.InfoFormat("HasItem:[{0}]{1}", itemId, hasItem);
-            if (hasItem)
-            {
-                // character.ItemManager.RemoveItem(itemId, 1);
-            }
-            else
-            {
-                character.ItemManager.AddItem(1, 200);
-                character.ItemManager.AddItem(2, 100);
-                character.ItemManager.AddItem(3, 30);
-                character.ItemManager.AddItem(4, 120);
-            }
+            //int itemId = 2;
+            //bool hasItem = character.ItemManager.HasItem(itemId);
+            //Log.InfoFormat("HasItem:[{0}]{1}", itemId, hasItem);
+            //if (hasItem)
+            //{
+            //    // character.ItemManager.RemoveItem(itemId, 1);
+            //}
+            //else
+            //{
+            //    character.ItemManager.AddItem(1, 200);
+            //    character.ItemManager.AddItem(2, 100);
+            //    character.ItemManager.AddItem(3, 30);
+            //    character.ItemManager.AddItem(4, 120);
+            //}
                 
-            Models.Item item = character.ItemManager.GetItem(itemId);
-            Log.InfoFormat("Item: [{0}][{1}]", itemId, item);
-            DBService.Instance.Save();
+            //Models.Item item = character.ItemManager.GetItem(itemId);
+            //Log.InfoFormat("Item: [{0}][{1}]", itemId, item);
+            //DBService.Instance.Save();
             // 道具系统测试 end
 
             byte[] data = PackageHandler.PackMessage(message);

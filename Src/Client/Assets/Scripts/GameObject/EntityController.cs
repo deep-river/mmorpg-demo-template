@@ -39,6 +39,7 @@ public class EntityController : MonoBehaviour, IEntityNotify
             rb.useGravity = false;
     }
 
+    // 移动Entity
     void UpdateTransform()
     {
         this.position = GameObjectTool.LogicToWorld(entity.position);
@@ -77,6 +78,7 @@ public class EntityController : MonoBehaviour, IEntityNotify
 
     public void OnEntityEvent(EntityEvent entityEvent)
     {
+        // 设置动画状态机
         switch(entityEvent)
         {
             case EntityEvent.Idle:
@@ -97,6 +99,7 @@ public class EntityController : MonoBehaviour, IEntityNotify
 
     public void OnEntityRemoved()
     {
+        // 销毁NameBar
         if (UIWorldElementManager.Instance != null)
         {
             UIWorldElementManager.Instance.RemoveCharacterNameBar(this.transform);

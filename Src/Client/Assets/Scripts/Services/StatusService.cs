@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 namespace Services
@@ -14,15 +15,20 @@ namespace Services
         public delegate bool StatusNotifyHandler(NStatus status);
 
         Dictionary<StatusType, StatusNotifyHandler> eventMap = new Dictionary<StatusType, StatusNotifyHandler>();
+        HashSet<StatusNotifyHandler> handles = new HashSet<StatusNotifyHandler>();
 
         public void Init() { }
 
         public void RegisterStatusNotify(StatusType function, StatusNotifyHandler action)
         {
+            if (handles.Contains(action))
+                return;
             if (!eventMap.ContainsKey(function))
                 eventMap[function] = action;
             else
                 eventMap[function] += action;
+
+            handles.Add(action);
         }
 
         public StatusService()

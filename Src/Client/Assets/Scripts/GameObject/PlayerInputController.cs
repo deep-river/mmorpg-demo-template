@@ -58,7 +58,7 @@ public class PlayerInputController : MonoBehaviour {
             if (state != SkillBridge.Message.CharacterState.Move)
             {
                 state = SkillBridge.Message.CharacterState.Move;
-                this.character.MoveForward();
+                this.character.MoveForward(); // 输出log, speed赋值
                 this.SendEntityEvent(EntityEvent.MoveFwd);
             }
             this.rb.velocity = this.rb.velocity.y * Vector3.up + GameObjectTool.LogicToWorld(character.direction) * (this.character.speed + 9.81f) / 100f;
@@ -126,6 +126,7 @@ public class PlayerInputController : MonoBehaviour {
         this.transform.position = this.rb.transform.position;
     }
 
+    // 调用EntityController, 设置动画状态机, 移动刚体
     void SendEntityEvent(EntityEvent entityEvent)
     {
         if (entityController != null)
