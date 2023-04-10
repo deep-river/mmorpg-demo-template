@@ -40,7 +40,7 @@ public class UICharEquip : UIWindow {
 	{
 		foreach (var kv in ItemManager.Instance.Items)
 		{
-			if (kv.Value.Define.Type == ItemType.Equip)
+			if (kv.Value.Define.Type == ItemType.Equip && kv.Value.Define.LimitClass == User.Instance.CurrentCharacter.Class)
 			{
 				if (EquipManager.Instance.Contains(kv.Key))
 					continue;
