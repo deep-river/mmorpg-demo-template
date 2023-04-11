@@ -84,6 +84,8 @@ public class EntityController : MonoBehaviour, IEntityNotify
             case EntityEvent.Idle:
                 anim.SetBool("Move", false);
                 anim.SetTrigger("Idle");
+                anim.SetBool("Move", false);
+                anim.SetBool("MoveBack", false);
                 break;
             case EntityEvent.MoveFwd:
                 anim.SetBool("Move", true); 
