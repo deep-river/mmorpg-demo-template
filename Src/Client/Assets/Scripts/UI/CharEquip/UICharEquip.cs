@@ -63,8 +63,9 @@ public class UICharEquip : UIWindow {
 	{
 		foreach (var item in slots)
 		{
-			if (item.childCount > 0)
-				Destroy(item.GetChild(0).gameObject);
+			if (item.childCount > 1)
+				// 清除slots下的装备图标，注意slot下的装备类型text不要被销毁
+				Destroy(item.GetChild(1).gameObject);
 		}
 	}
 
