@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\Managers\TestManager.cs" />
      <Compile Include="Assets\Scripts\Models\BagItem.cs" />
      <Compile Include="Assets\Scripts\Models\Item.cs" />
+     <Compile Include="Assets\Scripts\Models\Quest.cs" />
      <Compile Include="Assets\Scripts\Models\User.cs" />
      <Compile Include="Assets\Scripts\Network\NetClient.cs" />
      <Compile Include="Assets\Scripts\Scene\SceneManager.cs" />
@@ -89,6 +90,7 @@
      <Compile Include="Assets\Scripts\UI\Bag\UIBag.cs" />
      <Compile Include="Assets\Scripts\UI\CharEquip\UICharEquip.cs" />
      <Compile Include="Assets\Scripts\UI\CharEquip\UIEquipItem.cs" />
+     <Compile Include="Assets\Scripts\UI\ListView\ListView.cs" />
      <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
      <Compile Include="Assets\Scripts\UI\Minimap\UIMinimap.cs" />
      <Compile Include="Assets\Scripts\UI\Shop\UIShop.cs" />
@@ -104,6 +106,11 @@
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
      <Compile Include="Assets\Scripts\UI\UINameBar.cs" />
+     <Compile Include="Assets\Scripts\UI\UIQuestSystem\UIQuestDialog.cs" />
+     <Compile Include="Assets\Scripts\UI\UIQuestSystem\UIQuestInfo.cs" />
+     <Compile Include="Assets\Scripts\UI\UIQuestSystem\UIQuestItem.cs" />
+     <Compile Include="Assets\Scripts\UI\UIQuestSystem\UIQuestStatus.cs" />
+     <Compile Include="Assets\Scripts\UI\UIQuestSystem\UIQuestSystem.cs" />
      <Compile Include="Assets\Scripts\UI\UIRegister.cs" />
      <Compile Include="Assets\Scripts\UI\UITest.cs" />
      <Compile Include="Assets\Scripts\UI\UIWindow.cs" />

@@ -413,5 +413,5 @@ message QuestAbandonRequest
 message QuestAbandonResponse
 {
 	RESULT result = 1;
-	stirng errormsg = 2;
+	string errormsg = 2;
 }
