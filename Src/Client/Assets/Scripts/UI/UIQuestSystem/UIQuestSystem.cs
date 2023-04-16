@@ -62,7 +62,7 @@ public class UIQuestSystem : UIWindow
                     continue;
             }
 
-            GameObject go = Instantiate(itemPrefab, kv.Value.Define.Type == QuestType.Main);
+            GameObject go = Instantiate(itemPrefab, kv.Value.Define.Type == QuestType.Main ? this.listMain.transform : this.listBranch.transform);
             UIQuestItem ui = go.GetComponent<UIQuestItem>();
             ui.SetQuestInfo(kv.Value);
             if (kv.Value.Define.Type == QuestType.Main)
