@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.UI.UIQuestSystem;
-using Common.Data;
+﻿using Common.Data;
 using Managers;
 using System;
 using System.Collections.Generic;

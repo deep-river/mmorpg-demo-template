@@ -2,10 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Managers;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.UIQuestSystem
+public class UIQuestStatus : MonoBehaviour
 {
-    internal class UIQuestStatus
+    public Image[] statusImages;
+    private NpcQuestStatus questStatus;
+
+    void Start()
     {
+
+    }
+
+    public void SetQuestStatus(NpcQuestStatus status)
+    {
+        this.questStatus = status;
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (this.statusImages[i] != null)
+            {
+                this.statusImages[i].gameObject.SetActive(i == (int)status);
+            }
+        }
     }
 }
