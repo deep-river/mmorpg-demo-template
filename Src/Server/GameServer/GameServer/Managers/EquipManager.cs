@@ -20,6 +20,7 @@ namespace GameServer.Managers
                 return Result.Failed;
             UpdateEquip(character.Data.Equips, slot, itemId, isEquip);
 
+            // TODO bug: db没有存储变更数据
             DBService.Instance.Save();
             return Result.Success;
         }
