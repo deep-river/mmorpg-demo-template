@@ -18,7 +18,7 @@ namespace GameServer.Managers
             Character character = sender.Session.Character;
             if (!character.ItemManager.Items.ContainsKey(itemId))
                 return Result.Failed;
-             UpdateEquip(character.Data.Equips, slot, itemId, isEquip);
+            UpdateEquip(character.Data.Equips, slot, itemId, isEquip);
 
             DBService.Instance.Save();
             return Result.Success;
