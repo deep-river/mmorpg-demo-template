@@ -1,4 +1,5 @@
-﻿using Common.Data;
+﻿using Common;
+using Common.Data;
 using GameServer.Entities;
 using GameServer.Services;
 using Network;
@@ -67,11 +68,13 @@ namespace GameServer.Managers
                 sender.Session.Response.questAccept.Quest = this.GetQuestInfo(dbQuest);
                 character.Data.Quests.Add(dbQuest);
                 DBService.Instance.Save();
+                Log.InfoFormat("Quest accepted::Character:{0}:QuestId:{1}", character.Id, questId);
                 return Result.Success;
             }
             else
             {
                 sender.Session.Response.questAccept.Errormsg = "任务不存在";
+                Log.InfoFormat("Quest acceptance failed::Character:{0}:QuestId:{1}", character.Id, questId);
                 return Result.Failed;
             }
         }
@@ -79,9 +82,7 @@ namespace GameServer.Managers
         public Result SubmitQuest(NetConnection<NetSession> sender, int questId)
         {
             Character character = sender.Session.Character;
-
             QuestDefine quest;
-
             if (DataManager.Instance.Quests.TryGetValue(questId, out quest))
             {
                 var dbQuest = character.Data.Quests.Where(q => q.QuestID == questId).FirstOrDefault();
@@ -95,15 +96,13 @@ namespace GameServer.Managers
                     dbQuest.Status = (int)QuestStatus.Finished;
                     sender.Session.Response.questSubmit.Quest = this.GetQuestInfo(dbQuest);
                     DBService.Instance.Save();
-
                     // 处理任务奖励
-                    if (quest.RewardExp > 0)
+                    if (quest.RewardGold > 0)
                     {
                         character.Gold += quest.RewardGold;
                     }
                     if (quest.RewardExp > 0)
                     {
-                        //
                     }
                     if (quest.RewardItem1 > 0)
                     {
@@ -118,14 +117,17 @@ namespace GameServer.Managers
                         character.ItemManager.AddItem(quest.RewardItem3, quest.RewardItem3Count);
                     }
                     DBService.Instance.Save();
+                    Log.InfoFormat("Quest submitted::Character:{0}:QuestId:{1}", character.Id, questId);
                     return Result.Success;
                 }
                 sender.Session.Response.questSubmit.Errormsg = "任务不存在[2]";
+                Log.InfoFormat("Quest submission failed::Character:{0}:QuestId:{1}", character.Id, questId);
                 return Result.Failed;
             }
             else
             {
                 sender.Session.Response.questSubmit.Errormsg = "任务不存在[1]";
+                Log.InfoFormat("Quest submission failed::Character:{0}:QuestId:{1}", character.Id, questId);
                 return Result.Failed;
             }
         }

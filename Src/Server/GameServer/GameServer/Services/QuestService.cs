@@ -3,11 +3,6 @@ using Common.Data;
 using GameServer.Entities;
 using Network;
 using SkillBridge.Message;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameServer.Services
 {
@@ -42,7 +37,7 @@ namespace GameServer.Services
 
             sender.Session.Response.questSubmit = new QuestSubmitResponse();
             Result result = character.QuestManager.SubmitQuest(sender, request.QuestId);
-            sender.Session.Response.questAccept.Result = result;
+            sender.Session.Response.questSubmit.Result = result;
             sender.SendResponse();
         }
     }

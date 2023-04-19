@@ -172,7 +172,7 @@ namespace Managers
                 dlg.OnClose += OnQuestDialogClose;
                 return true;
             }
-            if (quest.Info != null || quest.Info.Status == QuestStatus.InProgress) // TODO: notice if causes any bug
+            if (quest.Info != null || quest.Info.Status == QuestStatus.Completed) // TODO: notice if causes any bug
             {
                 if (!string.IsNullOrEmpty(quest.Define.DialogIncomplete))
                     MessageBox.Show(quest.Define.DialogIncomplete);
@@ -185,7 +185,7 @@ namespace Managers
             UIQuestDialog dlg = (UIQuestDialog)sender;
             if (result == UIWindow.WindowResult.Yes)
             {
-                MessageBox.Show(dlg.quest.Define.DialogAccept);
+                // MessageBox.Show(dlg.quest.Define.DialogAccept);
                 if (dlg.quest.Info == null)
                     QuestService.Instance.SendQuestAccept(dlg.quest);
                 else if (dlg.quest.Info.Status == QuestStatus.Completed)
