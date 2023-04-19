@@ -1785,10 +1785,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4EFB\u52A1\u63CF\u8FF0 \u4EFB\u52A1\u63CF\u8FF0 \u4EFB\u52A1\u63CF\u8FF0
-    \u4EFB\u52A1\u63CF\u8FF0 \u4EFB\u52A1\u63CF\u8FF0 \u4EFB\u52A1\u63CF\u8FF0 \u4EFB\u52A1\u63CF\u8FF0
-    \u4EFB\u52A1\u63CF\u8FF0 \u4EFB\u52A1\u63CF\u8FF0 \u4EFB\u52A1\u63CF\u8FF0 \u4EFB\u52A1\u63CF\u8FF0
-    \u4EFB\u52A1\u63CF\u8FF0 "
+  m_Text: 
 --- !u!114 &114417817121485992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2171,7 +2168,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 270, y: 90}
+  m_CellSize: {x: 220, y: 35}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2252,9 +2249,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1485491327814000}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 114384115471539444}
+        m_MethodName: OnCloseClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

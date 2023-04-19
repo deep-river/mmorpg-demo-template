@@ -72,13 +72,14 @@ GameObject:
   - component: {fileID: 224200370193972316}
   - component: {fileID: 222522787240279384}
   - component: {fileID: 114820736121030762}
+  - component: {fileID: 114728146454641956}
   m_Layer: 5
   m_Name: UIQuestStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &114015353505914708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,6 +161,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114728146454641956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1544332681174646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4643eb4a78e3a13459a79797e93e15e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  height: 2.35
 --- !u!114 &114820736121030762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,7 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d497521aced99b4b9a1982ff8a3b99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusImages: []
+  statusImages:
+  - {fileID: 0}
+  - {fileID: 114337588365094112}
+  - {fileID: 114438634142541950}
+  - {fileID: 114015353505914708}
 --- !u!222 &222034999242444604
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -216,10 +234,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224617600536363832
 RectTransform:

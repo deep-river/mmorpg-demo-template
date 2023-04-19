@@ -22,7 +22,7 @@ public abstract class UIWindow : MonoBehaviour {
 		UIManager.Instance.Close(this.Type);
 		if (this.OnClose != null)
 			this.OnClose(this, result);
-		this.OnClose= null;
+		this.OnClose = null;
 	}
 
 	public virtual void OnCloseClick()

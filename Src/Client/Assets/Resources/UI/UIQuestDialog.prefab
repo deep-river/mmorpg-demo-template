@@ -1808,7 +1808,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 114801509264924132}
-  targets: []
+  targets:
+  - {fileID: 114905961670435652}
+  - {fileID: 114145198330820330}
+  - {fileID: 114713295437174288}
   description: {fileID: 114856421878328700}
   rewardItems: {fileID: 0}
   rewardMoney: {fileID: 114605630907055450}
@@ -2076,9 +2079,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1902083484721112}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 114088103768017240}
+        m_MethodName: OnCloseClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
