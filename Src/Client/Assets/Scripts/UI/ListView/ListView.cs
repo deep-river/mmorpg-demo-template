@@ -26,6 +26,8 @@ public class ListView : MonoBehaviour
             {
                 selected = value;
                 onSelected(selected);
+                if (!value)
+                    owner.selectedItem = null;
             }
         }
         public virtual void onSelected(bool selected)

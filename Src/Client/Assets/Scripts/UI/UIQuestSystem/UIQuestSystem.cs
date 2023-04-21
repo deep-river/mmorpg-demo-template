@@ -79,6 +79,20 @@ public class UIQuestSystem : UIWindow
 
     public void OnQuestSelected(ListView.ListViewItem item)
     {
+        if (item.owner == listMain)
+        {
+            foreach (var kv in listBranch.GetComponentsInChildren<ListView.ListViewItem>())
+            {
+                kv.Selected = false;
+            }
+        }
+        if (item.owner == listBranch)
+        {
+            foreach (var kv in listMain.GetComponentsInChildren<ListView.ListViewItem>())
+            {
+                kv.Selected = false;
+            }
+        }
         UIQuestItem questItem = item as UIQuestItem;
         this.questInfo.SetQuestInfo(questItem.quest);
     }
