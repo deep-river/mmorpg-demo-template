@@ -172,7 +172,7 @@ namespace Managers
                 dlg.OnClose += OnQuestDialogClose;
                 return true;
             }
-            if (quest.Info != null || quest.Info.Status == QuestStatus.Completed) // TODO: notice if causes any bug
+            if (quest.Info != null || quest.Info.Status == QuestStatus.InProgress) // TODO: notice if causes any bug
             {
                 if (!string.IsNullOrEmpty(quest.Define.DialogIncomplete))
                     MessageBox.Show(quest.Define.DialogIncomplete);
