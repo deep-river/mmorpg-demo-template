@@ -100,6 +100,7 @@ public class PlayerInputController : MonoBehaviour {
             if(rot.eulerAngles.y > this.turnAngle && rot.eulerAngles.y < (360 - this.turnAngle))
             {
                 character.SetDirection(GameObjectTool.WorldToLogic(this.transform.forward));
+                //rb.transform.forward = Vector3.Lerp(rb.transform.forward, this.transform.forward, 0.2f);
                 rb.transform.forward = this.transform.forward;
                 this.SendEntityEvent(EntityEvent.None);
             }
@@ -123,6 +124,7 @@ public class PlayerInputController : MonoBehaviour {
             this.character.SetPosition(GameObjectTool.WorldToLogic(this.rb.transform.position));
             this.SendEntityEvent(EntityEvent.None);
         }
+        //this.transform.position = Vector3.Lerp(this.transform.position, this.rb.transform.position, 0.2f);
         this.transform.position = this.rb.transform.position;
     }
 

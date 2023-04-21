@@ -72,30 +72,6 @@ public class GameObjectManager : MonoSingleton<GameObjectManager>
             go.name = "Character_" + character.Info.Id + "_" + character.Info.Name;
             Characters[character.entityId] = go;
 
-            //go.transform.position = GameObjectTool.LogicToWorld(character.position);
-            //go.transform.forward = GameObjectTool.LogicToWorld(character.direction);
-            //EntityController ec = go.GetComponent<EntityController>();
-            //if (ec != null)
-            //{
-            //    ec.entity = character;
-            //    ec.isPlayer = character.IsPlayer;
-            //}
-            //PlayerInputController pc = go.GetComponent<PlayerInputController>();
-            //if (pc != null)
-            //{
-            //    if (character.Info.Id == Models.User.Instance.CurrentCharacter.Id)
-            //    {
-            //        User.Instance.CurrentCharacterObject = go;
-            //        MainPlayerCamera.Instance.player = go;
-            //        pc.enabled = true;
-            //        pc.character = character;
-            //        pc.entityController = ec;
-            //    }
-            //    else
-            //    {
-            //        pc.enabled = false;
-            //    }
-            //}
             UIWorldElementManager.Instance.AddCharacterNameBar(go.transform, character);
         }
         this.InitGameObject(Characters[character.entityId], character);
@@ -117,7 +93,8 @@ public class GameObjectManager : MonoSingleton<GameObjectManager>
             if (character.Info.Id == User.Instance.CurrentCharacter.Id)
             {
                 User.Instance.CurrentCharacterObject = go;
-                MainPlayerCamera.Instance.player = go;
+                //MainPlayerCamera.Instance.player = go;
+                MainPlayerCamera.Instance.InitCamera(go);
                 pc.enabled = true;
                 pc.character = character;
                 pc.entityController = ec;
