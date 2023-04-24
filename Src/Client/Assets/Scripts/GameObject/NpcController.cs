@@ -1,13 +1,17 @@
 ﻿using Common.Data;
+using Entities;
 using Managers;
 using Models;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class NPCController : MonoBehaviour {
 
 	public int npcID;
+
+	public float interactiveDistance = 5f;
 
 	private bool inInteractive = false;
 
@@ -104,7 +108,9 @@ public class NPCController : MonoBehaviour {
 
     void OnMouseDown()
 	{
-		Interactive();
+		float npcDistance = Get2DDistanceFromPlayer();
+		if (npcDistance <= interactiveDistance)
+			Interactive();
 	}
 
 	private void OnMouseOver()
@@ -137,4 +143,17 @@ public class NPCController : MonoBehaviour {
                 renderer.sharedMaterial.color = orignColor;
         }
     }
+
+	private float Get2DDistanceFromPlayer()
+	{
+		if (User.Instance.CurrentCharacter != null)
+		{
+            Character character = CharacterManager.Instance.Characters[User.Instance.CurrentCharacter.Id];
+            Vector2 character2DPosition = new Vector2(character.position.x / 100, character.position.y / 100);
+			Vector2 npc2DPosition = new Vector2(this.transform.position.x, this.transform.position.z);
+			// Debug.LogFormat("character pos:{0}, npc pos:{1}", character2DPosition, npc2DPosition);
+            return Vector2.Distance(character2DPosition, npc2DPosition);
+        }
+        return -1f;
+	}
 }
