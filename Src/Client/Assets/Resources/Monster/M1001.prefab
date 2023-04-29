@@ -1419,10 +1419,10 @@ Animator:
   m_GameObject: {fileID: 1717735419656814}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4a27693a9f1ec3b4ca0719e4b03d37ef, type: 3}
-  m_Controller: {fileID: 9100000, guid: 34e37b3dd75f1e844aeb5dce99b2e7b1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 83d996a2c5eca464ab8e9ac50da4496a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
