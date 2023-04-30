@@ -22,6 +22,7 @@ namespace GameServer
         bool running = false;
         public bool Init()
         {
+            // 初始化各项服务
             int Port = Properties.Settings.Default.ServerPort;
             network = new NetService();
             network.Init(Port);
@@ -31,7 +32,7 @@ namespace GameServer
             UserService.Instance.Init();
             ItemService.Instance.Init();
             QuestService.Instance.Init();
-            thread = new Thread(new ThreadStart(this.Update));
+            thread = new Thread(new ThreadStart(this.Update)); // 单独开一个线程实现Update
 
             return true;
         }
@@ -59,7 +60,7 @@ namespace GameServer
                 Time.Tick();
                 Thread.Sleep(100);
                 //Console.WriteLine("{0} {1} {2} {3} {4}", Time.deltaTime, Time.frameCount, Time.ticks, Time.time, Time.realtimeSinceStartup);
-                mapManager.Update();
+                mapManager.Update(); // 怪物刷新管理
             }
         }
     }
