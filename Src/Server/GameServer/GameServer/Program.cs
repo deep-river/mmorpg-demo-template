@@ -7,6 +7,7 @@ using ProtoBuf;
 using System.IO;
 using Common;
 using System.Threading;
+using Prometheus;
 
 namespace GameServer
 {
@@ -22,6 +23,9 @@ namespace GameServer
             GameServer server = new GameServer();
             server.Init();
             server.Start();
+            var metricServer = new MetricServer(port: 1234);
+            metricServer.Start();
+            Log.Info("Prometheus Server Init");
             Console.WriteLine("Game Server Running......");
             CommandHelper.Run();
             Log.Info("Game Server Exiting...");
