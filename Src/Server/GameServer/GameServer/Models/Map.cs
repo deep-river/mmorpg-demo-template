@@ -35,6 +35,9 @@ namespace GameServer.Models
         }
         internal MapDefine Define;
 
+        // <summary>
+        // 地图中的角色，以CharacterId为Key
+        // </summary>
         Dictionary<int, MapCharacter> MapCharacters = new Dictionary<int, MapCharacter>();
 
         SpawnManager SpawnManager = new SpawnManager();
@@ -102,7 +105,7 @@ namespace GameServer.Models
         void SendCharacterLeaveMap(NetConnection<NetSession> conn, Character character)
         {
             conn.Session.Response.mapCharacterLeave = new MapCharacterLeaveResponse();
-            conn.Session.Response.mapCharacterLeave.characterId = character.Id;
+            conn.Session.Response.mapCharacterLeave.entityId = character.entityId;
             conn.SendResponse();
         }
 
