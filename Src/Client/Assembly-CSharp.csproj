@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EntityManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EquipManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\FriendManager.cs" />
      <Compile Include="Assets\Scripts\Managers\ItemManager.cs" />
      <Compile Include="Assets\Scripts\Managers\MinimapManager.cs" />
      <Compile Include="Assets\Scripts\Managers\NPCManager.cs" />
@@ -86,6 +87,7 @@
      <Compile Include="Assets\Scripts\Models\User.cs" />
      <Compile Include="Assets\Scripts\Network\NetClient.cs" />
      <Compile Include="Assets\Scripts\Scene\SceneManager.cs" />
+     <Compile Include="Assets\Scripts\Services\FriendService.cs" />
      <Compile Include="Assets\Scripts\Services\ItemService.cs" />
      <Compile Include="Assets\Scripts\Services\MapService.cs" />
      <Compile Include="Assets\Scripts\Services\QuestService.cs" />
@@ -105,6 +107,8 @@
      <Compile Include="Assets\Scripts\UI\UICharacterSelect.cs" />
      <Compile Include="Assets\Scripts\UI\UICharacterView.cs" />
      <Compile Include="Assets\Scripts\UI\UICharInfo.cs" />
+     <Compile Include="Assets\Scripts\UI\UIFriendWindow\UIFriendItem.cs" />
+     <Compile Include="Assets\Scripts\UI\UIFriendWindow\UIFriends.cs" />
      <Compile Include="Assets\Scripts\UI\UIIconItem.cs" />
      <Compile Include="Assets\Scripts\UI\UIInputBox.cs" />
      <Compile Include="Assets\Scripts\UI\UILogin.cs" />
