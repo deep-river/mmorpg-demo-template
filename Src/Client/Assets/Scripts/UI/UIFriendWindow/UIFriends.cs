@@ -15,7 +15,7 @@ public class UIFriends : UIWindow {
 	// Use this for initialization
 	void Start () {
 		FriendService.Instance.OnFriendUpdate = RefreshUI;
-		this.listMain.OnItemSelected += this.OnFriendSelected;
+		this.listMain.onItemSelected += this.OnFriendSelected;
 		RefreshUI();
 	}
 	
