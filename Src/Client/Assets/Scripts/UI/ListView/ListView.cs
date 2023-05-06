@@ -38,6 +38,11 @@ public class ListView : MonoBehaviour
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (this.selected)
+            {
+                this.Selected = false;
+                return;
+            }
             if (!this.selected)
             {
                 this.Selected = true;
