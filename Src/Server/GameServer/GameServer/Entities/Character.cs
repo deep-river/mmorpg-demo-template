@@ -15,7 +15,7 @@ namespace GameServer.Entities
     /// Character
     /// 玩家角色类
     /// </summary>
-    class Character : CharacterBase
+    class Character : CharacterBase, IPostResponser
     {
        
         public TCharacter Data;
@@ -53,8 +53,8 @@ namespace GameServer.Entities
             this.QuestManager.GetQuestsInfo(this.Info.Quests);
             this.StatusManager = new StatusManager(this);
 
-            //this.FriendManager = new FriendManager(this);
-            //this.FriendManager.GetFriendsInfo(this.Info.Friends);
+            this.FriendManager = new FriendManager(this);
+            this.FriendManager.GetFriendsInfo(this.Info.Friends);
         }
 
         public long Gold
@@ -67,6 +67,20 @@ namespace GameServer.Entities
                 this.StatusManager.AddGoldChange((int)(value - this.Data.Gold));
                 this.Data.Gold = value;
             }
+        }
+
+        public void PostProcess(NetMessageResponse message)
+        {
+            this.FriendManager.PostProcess(message);
+            if (this.StatusManager.HasStatus)
+            {
+                this.StatusManager.PostProcess(message);
+            }
+        }
+
+        public void Clear()
+        {
+            this.FriendManager.UpdateFriendInfo(this.Info, 0);
         }
     }
 }

@@ -3,7 +3,6 @@ using Models;
 using Network;
 using SkillBridge.Message;
 using System;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +12,11 @@ namespace Services
     {
 
         public UnityAction OnFriendUpdate;
+
+        public void Init()
+        {
+
+        }
 
         public FriendService()
         {
