@@ -23,6 +23,7 @@ public class UIManager : Singleton<UIManager>
         UIWindowPool.Add(typeof(UICharEquip), new UIElement() { Resources = "UI/UICharEquip", Cache = false });
         UIWindowPool.Add(typeof(UIQuestSystem), new UIElement() { Resources = "UI/UIQuestSystem", Cache = false });
         UIWindowPool.Add(typeof(UIQuestDialog), new UIElement() { Resources = "UI/UIQuestDialog", Cache = false });
+        UIWindowPool.Add(typeof(UIFriends), new UIElement() { Resources = "UI/UIFriend", Cache = false });
     }
 
     ~UIManager()

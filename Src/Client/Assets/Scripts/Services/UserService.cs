@@ -234,6 +234,7 @@ namespace Services
             NetClient.Instance.SendMessage(message);
         }
 
+        // Managers启动入口
         void OnGameEnter(object sender, UserGameEnterResponse response)
         {
             Debug.LogFormat("OnGameEnter:{0} [{1}]", response.Result, response.Errormsg);
@@ -247,6 +248,7 @@ namespace Services
                     BagManager.Instance.Init(response.Character.Bag);
                     EquipManager.Instance.Init(response.Character.Equips);
                     QuestManager.Instance.Init(response.Character.Quests);
+                    FriendManager.Instance.Init(response.Character.Friends);
                 }
             }
         }
