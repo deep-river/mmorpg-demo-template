@@ -26,7 +26,7 @@ public class ListView : MonoBehaviour
             {
                 selected = value;
                 onSelected(selected);
-                if (!value)
+                if (!value && owner != null)
                     owner.selectedItem = null;
             }
         }

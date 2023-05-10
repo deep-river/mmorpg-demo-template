@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 222774812794924250}
   - component: {fileID: 114035828606492578}
   - component: {fileID: 114228922027742508}
-  - component: {fileID: 114412564070990526}
+  - component: {fileID: 114638456765957184}
   m_Layer: 5
   m_Name: UITeamMemberItem
   m_TagString: Untagged
@@ -195,25 +195,6 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 114035828606492578}
---- !u!114 &114412564070990526
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1853326015171322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707a594fab19a2f40a42f43ffadb9e35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  title: {fileID: 114763335989922026}
-  level: {fileID: 114749659376379384}
-  limitClass: {fileID: 0}
-  limitCategory: {fileID: 0}
-  background: {fileID: 114453164236197362}
-  normalBg: {fileID: 21300000, guid: 3db4c3a3e42021246963dfeb8e023a46, type: 3}
-  selectedBg: {fileID: 21300000, guid: 3db4c3a3e42021246963dfeb8e023a46, type: 3}
 --- !u!114 &114443709366873800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,6 +249,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114638456765957184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853326015171322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12625da49d235045a34fa95032594b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  level: {fileID: 114749659376379384}
+  nickname: {fileID: 114763335989922026}
+  classIcon: {fileID: 114453164236197362}
+  leaderIcon: {fileID: 114443709366873800}
+  background: {fileID: 114035828606492578}
+  idx: 0
 --- !u!114 &114684260143153932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,7 +315,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -327,7 +326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lv.
+  m_Text: Lv.10
 --- !u!114 &114763335989922026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -349,10 +348,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -360,7 +359,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u89D2\u8272\u540D"
+  m_Text: archer[1]
 --- !u!114 &114973458212684392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,8 +457,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65, y: 10}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 43.48, y: 10}
+  m_SizeDelta: {x: 106.96, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224165519551841100
 RectTransform:
@@ -512,8 +511,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: 10}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -37.500027, y: 10}
+  m_SizeDelta: {x: 55, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224333456916106748
 RectTransform:
