@@ -14,17 +14,43 @@ public class UIFriends : UIWindow {
 
 	// Use this for initialization
 	void Start () {
-		FriendService.Instance.OnFriendUpdate = RefreshUI;
+		FriendService.Instance.OnFriendUpdate += RefreshUI;
 		this.listMain.onItemSelected += this.OnFriendSelected;
 		RefreshUI();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void OnDestroy()
+    {
+        FriendService.Instance.OnFriendUpdate -= RefreshUI;
+    }
 
-	public void OnFriendSelected (ListView.ListViewItem item)
+    // Update is called once per frame
+    void Update () {
+
+    }
+
+    void RefreshUI()
+    {
+        ClearFriendList();
+        InitFriendItems();
+    }
+
+    void InitFriendItems()
+    {
+        foreach (var item in FriendManager.Instance.allFriends)
+        {
+            GameObject go = Instantiate(itemPrefab, this.listMain.transform);
+            UIFriendItem ui = go.GetComponent<UIFriendItem>();
+            ui.SetFriendInfo(item);
+            this.listMain.AddItem(ui);
+        }
+    }
+
+    void ClearFriendList()
+    {
+        this.listMain.RemoveAll();
+    }
+
+    public void OnFriendSelected (ListView.ListViewItem item)
 	{
 		this.selectedItem = item as UIFriendItem;
 	}
@@ -69,28 +95,6 @@ public class UIFriends : UIWindow {
 		{
 			FriendService.Instance.SendFriendRemoveRequest(this.selectedItem.Info.Id, this.selectedItem.Info.friendInfo.Id);
 		};
-	}
-
-	void RefreshUI()
-	{
-		ClearFriendList();
-		InitFriendItems();
-	}
-
-	void InitFriendItems()
-	{
-		foreach (var item in FriendManager.Instance.allFriends)
-		{
-			GameObject go = Instantiate(itemPrefab, this.listMain.transform);
-			UIFriendItem ui = go.GetComponent<UIFriendItem>();
-			ui.SetFriendInfo(item);
-			this.listMain.AddItem(ui);
-		}
-	}
-
-	void ClearFriendList()
-	{
-		this.listMain.RemoveAll();
 	}
 
 	public void OnClickFriendTeamInvite()

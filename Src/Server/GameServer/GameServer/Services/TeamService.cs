@@ -90,6 +90,7 @@ namespace GameServer.Services
             sender.Session.Response.teamLeave.Result = Result.Success;
 
             character.Team.Leave(character);
+            // TODO FIX: 向队伍中其他成员发送TeamLeaveRequest
             sender.SendResponse();
         }
     }

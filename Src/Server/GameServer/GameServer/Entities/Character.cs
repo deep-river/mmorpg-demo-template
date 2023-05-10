@@ -97,7 +97,6 @@ namespace GameServer.Entities
 
         public void Clear()
         {
-            //this.FriendManager.UpdateFriendInfo(this.Info, 0);
             // 使用OfflineNotify()来群发通知
             this.FriendManager.OfflineNotify();
         }
