@@ -9,6 +9,7 @@ using UnityEngine.Events;
 
 using Entities;
 using SkillBridge.Message;
+using Models;
 
 namespace Managers
 {
@@ -72,6 +73,11 @@ namespace Managers
                 this.Characters.Remove(entityId);
             }
 
+        }
+
+        public Sprite LoadCharacterAvatar()
+        {
+            return Resloader.Load<Sprite>("UI/Avatars/" + (int)User.Instance.CurrentCharacter.Class);
         }
     }
 }

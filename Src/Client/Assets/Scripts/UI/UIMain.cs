@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Managers;
+using Models;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class UIMain : MonoSingleton<UIMain> {
 
     public Text avatarName;
     public Text avatarLevel;
+    public Image avatarImage;
+    public Slider healthBar;
+    public Slider magicBar;
 
     public UITeam TeamWindow;
 
@@ -21,6 +25,7 @@ public class UIMain : MonoSingleton<UIMain> {
     {
         this.avatarName.text = string.Format("{0}[{1}]", User.Instance.CurrentCharacter.Name, User.Instance.CurrentCharacter.Id);
         this.avatarLevel.text = User.Instance.CurrentCharacter.Level.ToString();
+        this.avatarImage.overrideSprite = CharacterManager.Instance.LoadCharacterAvatar();
     }
 	
 	// Update is called once per frame
