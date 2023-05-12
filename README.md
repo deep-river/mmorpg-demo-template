@@ -11,7 +11,7 @@ Unity引擎下开发的个人MMORPG游戏Demo，包括项目前后端代码及�
 │&nbsp;&nbsp;├─Data - 策划配置表及转表工具  
 │&nbsp;&nbsp;├─Lib - GameServer引用的Common等项目  
 │&nbsp;&nbsp;└─Server  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─GameServer - 服务端项目文件夹  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─GameServer - C#服务端项目文件夹  
 └─Tools - ProtoBuf协议生成脚本等工具  
 
 # 运行环境
