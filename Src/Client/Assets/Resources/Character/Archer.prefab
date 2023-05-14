@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 136208897127369254}
   - component: {fileID: 114590041540469328}
   - component: {fileID: 114479421890753558}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
