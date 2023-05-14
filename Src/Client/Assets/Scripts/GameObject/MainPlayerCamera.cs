@@ -57,7 +57,7 @@ public class MainPlayerCamera : MonoSingleton<MainPlayerCamera>
             _currentRotation = Vector3.zero;
         }
 
-        if (drag)
+        if (drag && this.target != null)
         {
             float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
