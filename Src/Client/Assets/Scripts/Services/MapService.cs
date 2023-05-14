@@ -38,7 +38,8 @@ namespace Services
             foreach (var cha in response.Characters)
             {
                 if (User.Instance.CurrentCharacter== null || (cha.Type == CharacterType.Player && User.Instance.CurrentCharacter.Id == cha.Id))
-                {//当前角色切换地图
+                {
+                    //当前角色切换地图
                     User.Instance.CurrentCharacter = cha;
                 }
                 CharacterManager.Instance.AddCharacter(cha);

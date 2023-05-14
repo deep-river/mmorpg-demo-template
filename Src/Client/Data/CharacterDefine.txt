@@ -5,7 +5,7 @@
     "Type": "Normal",
     "Class": "WARRIOR",
     "Resource": "Character/Warrior",
-    "Description": "这是一个战士",
+    "Description": "做事严谨，誓死保护同伴，并能为捍卫真理勇敢向前，这就是一个战士一生的职责。\n\n你的力量提升会很快，同时修炼近距离战斗相关的技能也会比其他职业快。",
     "InitLevel": 1,
     "Speed": 500
   },
@@ -15,7 +15,7 @@
     "Type": "Normal",
     "Class": "WIZARD",
     "Resource": "Character/Wizard",
-    "Description": "这是一个法师",
+    "Description": "理解魔法的本质，熟练的应用魔力，是团队中最强力的战斗者。\n\n你的最大魔法会比其他人提升的更高，魔法相关技能的修炼速度也会提升很多。",
     "InitLevel": 1,
     "Speed": 500
   },
@@ -25,7 +25,7 @@
     "Type": "Normal",
     "Class": "ARCHER",
     "Resource": "Character/Archer",
-    "Description": "这是一个弓箭手",
+    "Description": "矫健的身手，游走的诗人，掌控了整个战场的节奏。\n\n你的敏捷会比其他人提升的更高，弓箭相关技能的修炼速度也会提升很多。",
     "InitLevel": 1,
     "Speed": 500
   },
