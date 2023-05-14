@@ -32,18 +32,31 @@ public class EntityController : MonoBehaviour, IEntityNotify
         if (entity != null)
         {
             EntityManager.Instance.RegisterEntityChangeNotify(entity.entityId, this);
-            this.UpdateTransform();
+            this.InitTransform();
         }
 
         if (!this.isPlayer)
             rb.useGravity = false;
     }
 
-    // 移动Entity
-    void UpdateTransform()
+    void InitTransform()
     {
         this.position = GameObjectTool.LogicToWorld(entity.position);
         this.direction = GameObjectTool.LogicToWorld(entity.direction);
+
+        this.rb.MovePosition(this.position);
+        this.transform.forward = this.direction;
+        this.lastPosition = this.position;
+        this.lastRotation = this.rotation;
+    }
+
+    // 移动Entity
+    void UpdateTransform()
+    {
+        // this.position = GameObjectTool.LogicToWorld(entity.position);
+        this.position = Vector3.Lerp(this.lastPosition, GameObjectTool.LogicToWorld(entity.position), 0.2f);
+        // this.direction = GameObjectTool.LogicToWorld(entity.direction);
+        this.direction = Vector3.Lerp(this.transform.forward, GameObjectTool.LogicToWorld(entity.direction), 0.2f);
 
         this.rb.MovePosition(this.position);
         this.transform.forward = this.direction;
