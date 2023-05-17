@@ -8,6 +8,8 @@ public class MainPlayerCamera : MonoSingleton<MainPlayerCamera>
 
     public GameObject target;
 
+    private PlayerInputController targetController;
+
     private bool drag = false;
 
     [SerializeField]
@@ -32,6 +34,7 @@ public class MainPlayerCamera : MonoSingleton<MainPlayerCamera>
     public void InitCamera(GameObject target)
     {
         this.target = target;
+        this.targetController = target.GetComponent<PlayerInputController>();
         this.transform.position = target.transform.position;
         this.transform.rotation = target.transform.rotation;
         this._rotationOffset = this.transform.localEulerAngles;
@@ -85,7 +88,8 @@ public class MainPlayerCamera : MonoSingleton<MainPlayerCamera>
                 // TODO：仅在角色移动时lerp修改rotation
                 this.transform.position = target.transform.position;
                 // this.transform.rotation = target.transform.rotation;
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation, target.transform.rotation, 0.1f);
+                if (targetController != null && targetController.state == SkillBridge.Message.CharacterState.Move)
+                    this.transform.rotation = Quaternion.Slerp(this.transform.rotation, target.transform.rotation, 0.02f);
                 this._rotationOffset = this.transform.localEulerAngles;
             }
         }
