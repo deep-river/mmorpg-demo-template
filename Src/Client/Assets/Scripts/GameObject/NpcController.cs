@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NPCController : MonoBehaviour {
 
@@ -108,6 +109,9 @@ public class NPCController : MonoBehaviour {
 
     void OnMouseDown()
 	{
+		if (IsTouchedUI())
+			return;
+
 		float npcDistance = Get2DDistanceFromPlayer();
 		if (npcDistance <= interactiveDistance)
 			Interactive();
@@ -156,4 +160,21 @@ public class NPCController : MonoBehaviour {
         }
         return -1f;
 	}
+
+    bool IsTouchedUI()
+    {
+        bool touchedUI = false;
+        if (Application.isMobilePlatform)
+        {
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                touchedUI = true;
+            }
+        }
+        else if (EventSystem.current.IsPointerOverGameObject())
+        {
+            touchedUI = true;
+        }
+        return touchedUI;
+    }
 }
