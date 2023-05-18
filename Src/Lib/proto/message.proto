@@ -212,6 +212,8 @@ message NetMessageRequest{
 	TeamInviteResponse teamInviteRes = 20;
 	TeamInfoRequest teamInfo = 21;
 	TeamLeaveRequest teamLeave = 22;
+
+	ChatRequest chat = 30;
 }
 
 message NetMessageResponse{
@@ -242,6 +244,8 @@ message NetMessageResponse{
 	TeamInviteResponse teamInviteRes = 20;
 	TeamInfoResponse teamInfo = 21;
 	TeamLeaveResponse teamLeave = 22;
+
+	ChatResponse chat = 30;
 
 	StatusNotify statusNotify = 100;
 }
@@ -539,4 +543,45 @@ message TeamLeaveResponse
 	RESULT result = 1;
 	string errormsg = 2;
 	int32 characterId = 3;
+}
+
+// 聊天
+enum CHAT_CHANNEL 
+{
+	ALL = -1;
+	LOCAL = 1;
+	WORLD = 2;
+	SYSTEM = 4;
+	PRIVATE = 8;
+	TEAM = 16;
+	GUILD = 32;
+}
+
+message ChatMessage 
+{
+	CHAT_CHANNEL channel = 1;
+	int32 id = 2;
+	int32 from_id = 3;
+	string from_name = 4;
+	int32 to_id = 5;
+	string to_name = 6;
+	string message = 7;
+	double time = 8;
+}
+
+message ChatRequest
+{
+	ChatMessage message = 1;
+}
+
+message ChatResponse
+{
+	RESULT result = 1;
+	string errormsg = 2;
+	repeated ChatMessage localMessage = 3;
+	repeated ChatMessage worldMessage = 4;
+	repeated ChatMessage systemMessage = 5;
+	repeated ChatMessage privateMessage = 6;
+	repeated ChatMessage teamMessage = 7;
+	repeated ChatMessage guildMessage = 8;
 }

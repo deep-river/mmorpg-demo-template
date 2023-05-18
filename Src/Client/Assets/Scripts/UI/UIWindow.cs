@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class UIWindow : MonoBehaviour {
 
+	public GameObject Root;
 	public enum WindowResult
 	{
 		None = 0,

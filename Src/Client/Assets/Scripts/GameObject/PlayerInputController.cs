@@ -5,11 +5,12 @@ using UnityEngine;
 using Entities;
 using SkillBridge.Message;
 using Services;
+using Managers;
 
 public class PlayerInputController : MonoBehaviour {
 
     public Rigidbody rb;
-    SkillBridge.Message.CharacterState state;
+    public SkillBridge.Message.CharacterState state;
 
     public Character character;
 
@@ -51,6 +52,7 @@ public class PlayerInputController : MonoBehaviour {
         if (character == null)
             return;
 
+        if (InputManager.Instance.IsInputMode) return;
         
         float v = Input.GetAxis("Vertical");
         if (v > 0.01)

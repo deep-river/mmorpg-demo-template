@@ -17,13 +17,14 @@ public class UIManager : Singleton<UIManager>
 
     public UIManager()
     {
-        UIWindowPool.Add(typeof(UITest), new UIElement() { Resources = "UI/UITest", Cache = true });
+        UIWindowPool.Add(typeof(UIPausePanel), new UIElement() { Resources = "UI/UIPausePanel", Cache = true });
         UIWindowPool.Add(typeof(UIBag), new UIElement() { Resources = "UI/UIBag", Cache = false });
         UIWindowPool.Add(typeof(UIShop), new UIElement() { Resources = "UI/UIShop", Cache = false });
         UIWindowPool.Add(typeof(UICharEquip), new UIElement() { Resources = "UI/UICharEquip", Cache = false });
         UIWindowPool.Add(typeof(UIQuestSystem), new UIElement() { Resources = "UI/UIQuestSystem", Cache = false });
         UIWindowPool.Add(typeof(UIQuestDialog), new UIElement() { Resources = "UI/UIQuestDialog", Cache = false });
         UIWindowPool.Add(typeof(UIFriends), new UIElement() { Resources = "UI/UIFriend", Cache = false });
+        UIWindowPool.Add(typeof(UIPopCharMenu), new UIElement() { Resources = "UI/UIPopCharMenu", Cache = false });
     }
 
     ~UIManager()
