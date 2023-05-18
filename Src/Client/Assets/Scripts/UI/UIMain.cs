@@ -75,4 +75,9 @@ public class UIMain : MonoSingleton<UIMain> {
     {
         TeamWindow.ShowTeam(show);
     }
+
+    public void OnClickSetting()
+    {
+        UIManager.Instance.Show<UIPausePanel>();
+    }
 }
