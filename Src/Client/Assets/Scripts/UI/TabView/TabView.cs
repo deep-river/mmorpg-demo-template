@@ -30,7 +30,8 @@ public class TabView : MonoBehaviour {
             for (int i = 0; i < tabButtons.Length; i++)
             {
                 tabButtons[i].Select(i == index); // 更改按钮图标
-                tabPages[i].SetActive(i == index); // 切换页面
+                if (i < tabPages.Length - 1)
+                    tabPages[i].SetActive(i == index); // 切换页面
             }
             if (OnTabSelect != null)
                 OnTabSelect(index);
