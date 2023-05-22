@@ -27,7 +27,9 @@ namespace GameServer.Entities
         public FriendManager FriendManager;
 
         public Team Team;
-        public int TeamUpdateTS; // 时间戳
+        public double TeamUpdateTS; // 时间戳
+
+        public Chat Chat;
 
         public Character(CharacterType type,TCharacter cha):
             base(new Core.Vector3Int(cha.MapPosX, cha.MapPosY, cha.MapPosZ),new Core.Vector3Int(100,0,0))
@@ -60,6 +62,8 @@ namespace GameServer.Entities
 
             this.FriendManager = new FriendManager(this);
             this.FriendManager.GetFriendsInfo(this.Info.Friends);
+
+            this.Chat = new Chat(this);
         }
 
         public long Gold
@@ -78,6 +82,7 @@ namespace GameServer.Entities
         {
             Log.InfoFormat("PostProcess > Character: characterID:{0}:{1}", this.Id, this.Info.Name);
             this.FriendManager.PostProcess(message);
+            this.Chat.PostProcess(message);
 
             if (this.Team != null)
             {

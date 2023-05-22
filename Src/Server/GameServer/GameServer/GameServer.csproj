@@ -172,6 +172,7 @@
     <Compile Include="Entities\Monster.cs" />
     <Compile Include="GameServer.cs" />
     <Compile Include="Managers\CharacterManager.cs" />
+    <Compile Include="Managers\ChatManager.cs" />
     <Compile Include="Managers\DataManager.cs" />
     <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Managers\EquipManager.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Managers\SpawnManager.cs" />
     <Compile Include="Managers\StatusManager.cs" />
     <Compile Include="Managers\TeamManager.cs" />
+    <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Team.cs" />
@@ -205,6 +207,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\BagService.cs" />
+    <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\DBService.cs" />
     <Compile Include="Services\FriendService.cs" />
     <Compile Include="Services\ItemService.cs" />

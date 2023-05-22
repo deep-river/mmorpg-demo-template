@@ -34,6 +34,7 @@ namespace GameServer
             QuestService.Instance.Init();
             FriendService.Instance.Init();
             TeamService.Instance.Init();
+            ChatService.Instance.Init();
 
             thread = new Thread(new ThreadStart(this.Update)); // 单独开一个线程实现Update
 

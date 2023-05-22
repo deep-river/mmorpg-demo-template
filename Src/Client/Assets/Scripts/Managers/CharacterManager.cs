@@ -78,5 +78,12 @@ namespace Managers
         {
             return Resloader.Load<Sprite>("UI/Avatars/" + (int)User.Instance.CurrentCharacter.Class);
         }
+
+        public Character GetCharacter(int id)
+        {
+            Character character;
+            this.Characters.TryGetValue(id, out character);
+            return character;
+        }
     }
 }

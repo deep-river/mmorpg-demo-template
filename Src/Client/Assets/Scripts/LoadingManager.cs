@@ -8,6 +8,7 @@ using SkillBridge.Message;
 using ProtoBuf;
 using Services;
 using Managers;
+using Assets.Scripts.Services;
 
 public class LoadingManager : MonoBehaviour {
 
@@ -44,6 +45,7 @@ public class LoadingManager : MonoBehaviour {
         ShopManager.Instance.Init();
         FriendService.Instance.Init();
         TeamService.Instance.Init();
+        ChatService.Instance.Init();
 
         // Fake Loading Simulate
         for (float i = 50; i < 100;)
