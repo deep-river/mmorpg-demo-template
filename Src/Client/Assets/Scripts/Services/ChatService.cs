@@ -46,6 +46,7 @@ namespace Assets.Scripts.Services
         {
             if (message.Result == Result.Success)
             {
+                ChatManager.Instance.AddMessages(ChatChannel.Private, message.privateMessages);
                 ChatManager.Instance.AddMessages(ChatChannel.Local, message.localMessages);
                 ChatManager.Instance.AddMessages(ChatChannel.World, message.worldMessages);
                 ChatManager.Instance.AddMessages(ChatChannel.System, message.systemMessages);

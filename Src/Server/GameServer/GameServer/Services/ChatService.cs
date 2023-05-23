@@ -31,7 +31,7 @@ namespace GameServer.Services
             if (request.Message.Channel == ChatChannel.Private)
             {
                 var chatTo = SessionManager.Instance.GetSession(request.Message.ToId);
-                if (chatTo != null)
+                if (chatTo == null)
                 {
                     sender.Session.Response.Chat = new ChatResponse();
                     sender.Session.Response.Chat.Result = Result.Failed;
