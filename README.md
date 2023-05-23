@@ -36,6 +36,7 @@ Visual Studio 2022
 - 任务管理服务  
 - 好友管理服务  
 - 组队管理服务  
+- 聊天管理服务  
 
 ### Client
 
@@ -50,4 +51,5 @@ Visual Studio 2022
 - QuestService & QuestManager - 任务系统  
 - FriendService & FriendManager - 好友系统  
 - TeamService & TeamManager - 组队系统  
+- ChatService & ChatManager - 聊天系统  
 - UIManager & UIWindow & UIMessageBo & UIInputBox - UGUI框架及扩展组件  
