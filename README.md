@@ -2,7 +2,7 @@
 
 Unity引擎下开发的个人MMORPG游戏Demo，包括项目前后端代码及资源文件  
 
-视频演示地址: (待更新)
+视频演示地址: https://www.bilibili.com/video/BV1aV4y1673Y
 
 # 文件目录结构
 
