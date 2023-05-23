@@ -152,7 +152,7 @@ public class NPCController : MonoBehaviour {
 	{
 		if (User.Instance.CurrentCharacter != null)
 		{
-            Character character = CharacterManager.Instance.Characters[User.Instance.CurrentCharacter.Id];
+			Character character = CharacterManager.Instance.GetCharacter(User.Instance.CurrentCharacter.EntityId);
             Vector2 character2DPosition = new Vector2(character.position.x / 100, character.position.y / 100);
 			Vector2 npc2DPosition = new Vector2(this.transform.position.x, this.transform.position.z);
 			// Debug.LogFormat("character pos:{0}, npc pos:{1}", character2DPosition, npc2DPosition);
