@@ -50,3 +50,4 @@ ipch/
 *.psess
 *.vsp
 *.vspx
+Src/Client/build
