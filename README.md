@@ -1,3 +1,62 @@
+
+# Project Overview
+
+A personal MMORPG game demo developed using the Unity engine, including both frontend and backend code as well as resource files.
+
+Video: https://www.bilibili.com/video/BV1aV4y1673Y
+
+# Directory Structure
+
+├─Src  
+│&nbsp;&nbsp;├─Client - Unity client project folder  
+│&nbsp;&nbsp;├─Data - Configuration tables and conversion tools  
+│&nbsp;&nbsp;├─Lib - Common and other projects referenced by GameServer  
+│&nbsp;&nbsp;└─Server  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─GameServer - C# server project folder  
+└─Tools - Tools like ProtoBuf protocol generation scripts  
+
+# Environment
+
+Unity 2018.2.3f1  
+SQL Server 2022  
+Visual Studio 2022  
+
+# Main Modules
+
+### Common
+
+- Packet processing & message dispatching module
+
+### Server
+
+- Network module  
+- Database management service  
+- User management service  
+- Scene management service  
+- Item management service  
+- Quest management service  
+- Friend management service  
+- Team management service  
+- Chat management service  
+
+### Client
+
+- Protocol communication module  
+- DataManager - Local data loading module  
+- UserService - User management module (handling login, registration, etc.)  
+- SceneManager & MapService - Scene management module (handling character entry, exit, etc.)  
+- BagManager - Inventory management module  
+- ShopManager - Shop management module  
+- ItemService & ItemManager - Item system  
+- NpcManager - NPC management module  
+- QuestService & QuestManager - Quest system  
+- FriendService & FriendManager - Friend system  
+- TeamService & TeamManager - Team system  
+- ChatService & ChatManager - Chat system  
+- UIManager, UIWindow, UIMessageBox, UIInputBox - UGUI framework and extended components  
+
+
+
 # 项目简介
 
 Unity引擎下开发的个人MMORPG游戏Demo，包括项目前后端代码及资源文件  
